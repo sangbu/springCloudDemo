@@ -1,0 +1,17 @@
+# 端口
+server.port: 10010
+# 应用名
+spring.application.name: api-gateway
+# 注册中心地址
+eureka.client.service-url.defaultZone: http://eureka1:8761/eureka,http://eureka2:8762/eureka
+
+spring.cloud.gateway:
+  routes:  # 路由si(集合)
+    - id: user-service-route  # id唯一标识
+      uri: lb://provider-service  # 路由服务地址
+      predicates:
+        - Path=/**  # 断言
+      filters: # 请求地址添加路径前缀过滤器
+        - PrefixPath=/user
+  default-filters: # 配置全局默认过滤器
+    - AddResponseHeader=i-love,sjc #往响应过滤器中加入信息,不能写入空格，输入特殊字符

@@ -1,0 +1,26 @@
+# 应用名称，会在Eureka中作为服务的id标识（serviceId）
+spring:
+  application:
+    name: eureka-server
+#---
+#spring:
+#  profiles: server1
+server:
+  port: 8761
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+    register-with-eureka: false
+    fetch-registry: false
+#---
+#spring:
+#  profiles: server2
+#server:
+#  port: 8762
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://eureka1:8761/eureka   #只填写其它eureka地址即可,多个用逗号分隔
+#  instance:
+#    hostname: eureka2
